@@ -8,13 +8,13 @@ import {
   Image,
   Card,
 } from "react-bootstrap";
-
+import { getAllPosts } from "lib/api";
 import MyNavbar from "components/my-navbar";
 import Intro from "components/intro";
 import ListItem from "components/list-item";
 import GridItem from "components/grid-item";
 
-export default function Home() {
+export default function Home({ posts }) {
   return (
     <Container>
       <MyNavbar />
@@ -24,6 +24,7 @@ export default function Home() {
             <Intro />
           </Col>
         </Row>
+        <pre>{JSON.stringify(posts, null, 2)}</pre>
 
         <hr />
 
@@ -71,3 +72,11 @@ export default function Home() {
     </Container>
   );
 }
+export const getStaticProps = async () => {
+  const posts = await getAllPosts();
+  return {
+    props: {
+      posts,
+    },
+  };
+};
