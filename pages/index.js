@@ -34,29 +34,11 @@ export default function Home({ posts }) {
               <ListItem />
             </Col>
 
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
-
-            <Col md="4">
-              <GridItem />
-            </Col>
+            {posts.map((post) => (
+              <Col md="4">
+                <GridItem post={post} />
+              </Col>
+            ))}
           </Row>
         </div>
       </div>

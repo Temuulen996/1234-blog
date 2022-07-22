@@ -1,6 +1,7 @@
 import { Card } from "react-bootstrap";
 
-export default () => {
+export default ({ post }) => {
+  console.log(post);
   return (
     <Card className={`fj-card`}>
       <div className="card-body-wrapper">
@@ -16,7 +17,7 @@ export default () => {
             <Card.Title className="font-weight-bold mb-1">
               Амар Өсөхбаяр
             </Card.Title>
-            <Card.Text className="card-date">2021 оны 3 сарын 2</Card.Text>
+            <Card.Text className="card-date">{post._createdAt}</Card.Text>
           </div>
         </Card.Header>
         <div className="view overlay">
@@ -26,10 +27,8 @@ export default () => {
           />
         </div>
         <Card.Body>
-          <Card.Title className="card-main-title">
-            Микросэрвис орчин үед
-          </Card.Title>
-          <Card.Text>Вэб технологи</Card.Text>
+          <Card.Title className="card-main-title">{post.title}</Card.Title>
+          <Card.Text>{post.subtitle}</Card.Text>
         </Card.Body>
       </div>
     </Card>

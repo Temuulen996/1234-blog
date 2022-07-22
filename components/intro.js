@@ -10,7 +10,7 @@ export default () => (
       src="logo.jpg"
       alt="Generic placeholder"
     />
-    li `1`
+
     <Media.Body>
       <h5 className="font-weight-bold mb-0">1234.mn - Онлайн видео сургалт</h5>
       <p className="welcome-text">
