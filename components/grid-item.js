@@ -7,7 +7,7 @@ export default ({ post }) => {
       <div className="card-body-wrapper">
         <Card.Header className="d-flex flex-row">
           <img
-            src={"https://source.unsplash.com/user/erondu/150x150"}
+            src={post.publisher.picture}
             className="rounded-circle mr-3"
             height="50px"
             width="50px"
@@ -15,7 +15,7 @@ export default ({ post }) => {
           />
           <div>
             <Card.Title className="font-weight-bold mb-1">
-              Амар Өсөхбаяр
+              {post.publisher.publisher_name}
             </Card.Title>
             <Card.Text className="card-date">{post.date}</Card.Text>
           </div>
