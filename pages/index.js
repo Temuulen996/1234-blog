@@ -24,15 +24,15 @@ export default function Home({ posts }) {
             <Intro />
           </Col>
         </Row>
-        <pre>{JSON.stringify(posts, null, 2)}</pre>
+        {/* <pre>{JSON.stringify(posts, null, 2)}</pre> */}
 
         <hr />
 
         <div className={`page-wrapper`}>
           <Row className="mb-5">
-            <Col md="10">
+            {/*<Col md="10">
               <ListItem />
-            </Col>
+  </Col>*/}
 
             {posts.map((post) => (
               <Col md="4">
