@@ -1,7 +1,6 @@
 import { Card } from "react-bootstrap";
 import Link from "next/link";
 export default ({ post }) => {
-  console.log(post.slug);
   return (
     <Card className={`fj-card`}>
       <div className="card-body-wrapper">

@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import Layout from "../components/layout";
 import { Row, Col } from "react-bootstrap";
-import { getPostBySlug } from "lib/api";
+import { getAllPosts, getPostBySlug } from "lib/api";
 export default ({ post }) => {
   const router = useRouter();
-  console.log(post);
+
   return (
     <Layout>
       <Row>
@@ -53,11 +53,24 @@ export default ({ post }) => {
     </Layout>
   );
 };
-export const getServerSideProps = async ({ params }) => {
+export const getStaticProps = async ({ params }) => {
+  console.log(params.slug);
   const post = await getPostBySlug(params.slug);
   return {
     props: {
       post: post[0],
     },
+  };
+};
+export const getStaticPaths = async () => {
+  const posts = await getAllPosts();
+
+  return {
+    paths: posts.map((post) => ({
+      params: {
+        slug: post.slug,
+      },
+    })),
+    fallback: false,
   };
 };
