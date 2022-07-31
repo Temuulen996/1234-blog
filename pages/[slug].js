@@ -2,6 +2,16 @@ import { useRouter } from "next/router";
 import Layout from "../components/layout";
 import { Row, Col } from "react-bootstrap";
 import { getAllPosts, getPostBySlug } from "lib/api";
+import BlockContent from "@sanity/block-content-to-react";
+const serializers = {
+  types: {
+    code: (props) => (
+      <pre data-language={props.node.language}>
+        <code>{props.node.code}</code>
+      </pre>
+    ),
+  },
+};
 export default ({ post }) => {
   const router = useRouter();
 
@@ -34,20 +44,11 @@ export default ({ post }) => {
             <img className="img-fluid rounded" alt="" src={post.image} />
           </div>
           <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.
+          <BlockContent
+            imageOptions={{ w: 320, h: 240, fit: "max" }}
+            blocks={post.portableText}
+            serializers={serializers}
+          />
         </Col>
       </Row>
     </Layout>
