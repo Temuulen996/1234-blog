@@ -9,7 +9,16 @@ const serializers = {
     code: (props) => (
       <HighlightCode language={props.node.language}>
         {props.node.code}
+        <div className="code-filename">{props.node.filename}</div>
       </HighlightCode>
+    ),
+    image: (props) => (
+      <div>
+        <img src={props.node.asset.url} />
+        <div className="code-filename" style={{ textAlign: "center" }}>
+          {props.node.alt}
+        </div>
+      </div>
     ),
   },
 };
@@ -20,7 +29,7 @@ export default ({ post }) => {
     <Layout>
       <Row>
         <Col md="12">
-          {/* <pre>{JSON.stringify(post, null, 3)}</pre> */}
+          <pre>{JSON.stringify(post, null, 3)}</pre>
           <pre>{/*JSON.stringify(post, null, 2)*/}</pre>
           <div className="blog-detail-header">
             <p className="lead mb-0">
@@ -42,7 +51,14 @@ export default ({ post }) => {
               {post.subtitle}
             </h2>
 
-            <img className="img-fluid rounded" alt="" src={post.image} />
+            <img
+              className="img-fluid rounded"
+              alt={post.cover_image.alt}
+              src={post.cover_image.url}
+            />
+            <div className="code-filename" style={{ textAlign: "center" }}>
+              {post.cover_image.url}
+            </div>
           </div>
           <br />
           <BlockContent
