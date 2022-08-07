@@ -3,12 +3,13 @@ import Layout from "../components/layout";
 import { Row, Col } from "react-bootstrap";
 import { getAllPosts, getPostBySlug } from "lib/api";
 import BlockContent from "@sanity/block-content-to-react";
+import HighlightCode from "components/HighlightCode";
 const serializers = {
   types: {
     code: (props) => (
-      <pre data-language={props.node.language}>
-        <code>{props.node.code}</code>
-      </pre>
+      <HighlightCode language={props.node.language}>
+        {props.node.code}
+      </HighlightCode>
     ),
   },
 };
