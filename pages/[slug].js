@@ -14,7 +14,8 @@ const serializers = {
       </HighlightCode>
     ),
     image: (props) => (
-      <div>
+      <div className={`blog-image blog-image-${props.node.position}`}>
+        {console.log(props)}
         <img src={urlFor(props.node.asset.url).height(500).width(600).url()} />
         <div className="code-filename" style={{ textAlign: "center" }}>
           {props.node.alt}
