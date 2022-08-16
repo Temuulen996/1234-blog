@@ -55,7 +55,7 @@ export default ({ post }) => {
             <img
               className="img-fluid rounded"
               alt={post.cover_image.alt}
-              src={urlFor(post.cover_image.url).height(500).width(1100).url()}
+              src={urlFor(post.cover_image).height(500).width(1100).url()}
             />
             <div className="code-filename" style={{ textAlign: "center" }}>
               {post.cover_image.url}
