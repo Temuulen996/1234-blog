@@ -4,6 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import { getAllPosts, getPostBySlug } from "lib/api";
 import BlockContent from "@sanity/block-content-to-react";
 import HighlightCode from "components/HighlightCode";
+import { urlFor } from "lib/api";
 const serializers = {
   types: {
     code: (props) => (
@@ -14,7 +15,7 @@ const serializers = {
     ),
     image: (props) => (
       <div>
-        <img src={props.node.asset.url} />
+        <img src={urlFor(props.node.asset.url).height(500).width(600).url()} />
         <div className="code-filename" style={{ textAlign: "center" }}>
           {props.node.alt}
         </div>
@@ -29,7 +30,7 @@ export default ({ post }) => {
     <Layout>
       <Row>
         <Col md="12">
-          <pre>{JSON.stringify(post, null, 3)}</pre>
+          {/* <pre>{JSON.stringify(post, null, 3)}</pre> */}
           <pre>{/*JSON.stringify(post, null, 2)*/}</pre>
           <div className="blog-detail-header">
             <p className="lead mb-0">
@@ -54,7 +55,7 @@ export default ({ post }) => {
             <img
               className="img-fluid rounded"
               alt={post.cover_image.alt}
-              src={post.cover_image.url}
+              src={urlFor(post.cover_image.url).height(500).width(1100).url()}
             />
             <div className="code-filename" style={{ textAlign: "center" }}>
               {post.cover_image.url}

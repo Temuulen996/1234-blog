@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
 import moment from "moment";
 import Link from "next/link";
-
+import { urlFor } from "lib/api";
 export default ({ post }) => {
   moment.locale("mn");
   return (
@@ -9,7 +9,7 @@ export default ({ post }) => {
       <div className="card-body-wrapper">
         <Card.Header className="d-flex flex-row">
           <img
-            src={post.publisher.picture}
+            src={urlFor(post.publisher.picture).height(500).width(700).url()}
             className="rounded-circle mr-3"
             height="50px"
             width="50px"
