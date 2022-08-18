@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-export default (req, res) => {
-  res.status(200).json({ name: "John Doe" });
+import { getAllPosts } from "lib/api";
+export default async (req, res) => {
+  const posts = await getAllPosts();
+  res.status(200).json({ name: "sainuu", posts });
 };

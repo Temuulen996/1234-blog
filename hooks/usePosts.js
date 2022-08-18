@@ -1,12 +1,26 @@
 import useSWR from "swr";
-const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export const usePosts = () => {
-  const { data, error } = useSWR("/api/posts", fetcher);
+export const usePosts = (url) => {
+  const { data, error } = useSWR("/api/posts", {
+    onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
+      // Never retry on 404.
+      if (error.status === 404) return;
+
+      // Never retry for a specific key.
+      if (key === "/api/user") return;
+
+      // Only retry up to 10 times.
+      if (retryCount >= 10) return;
+
+      // Retry after 5 seconds.
+      setTimeout(() => revalidate({ retryCount }), 5000);
+    },
+    initialData: { name: "saraa" },
+  });
 
   return {
     data: data,
     isLoading: !error && !data,
-    isError: error,
+    error,
   };
 };

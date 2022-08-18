@@ -7,8 +7,8 @@ import Intro from "components/intro";
 import useSWR from "swr";
 import { usePosts } from "hooks/usePosts";
 export default function Home({ posts }) {
-  const { data, isLoading, isError } = usePosts();
-  if (isError) return <div>aldaa garlaa!!</div>;
+  const { data, isLoading, error } = usePosts();
+  if (error) return <div>aldaa garlaa!! {JSON.stringify(error, null, 2)}</div>;
   if (isLoading) return <div>achaallaj baina...</div>;
 
   return (
