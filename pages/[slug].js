@@ -5,6 +5,8 @@ import { getAllPosts, getPostBySlug } from "lib/api";
 import BlockContent from "@sanity/block-content-to-react";
 import HighlightCode from "components/HighlightCode";
 import { urlFor } from "lib/api";
+import moment from "moment";
+moment.locale("mn");
 const serializers = {
   types: {
     code: (props) => (
@@ -41,7 +43,8 @@ export default ({ post }) => {
                 width="50px"
                 src={post.publisher.picture}
               />
-              {post.publisher.publisher_name}, {post.date}{" "}
+              {post.publisher.publisher_name},{" "}
+              {moment(post.date).format("MMM Do YY")}{" "}
               <i class="fa fa-search-plus" aria-hidden="true"></i>
             </p>
 
