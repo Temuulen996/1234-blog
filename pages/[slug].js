@@ -3,10 +3,10 @@ import Layout from "../components/layout";
 import { Row, Col } from "react-bootstrap";
 import { getAllPosts, getPostBySlug } from "lib/api";
 import BlockContent from "@sanity/block-content-to-react";
-import HighlightCode from "components/HighlightCode";
+import HighlightCode from "components/highlight-code";
 import { urlFor } from "lib/api";
-import moment from "moment";
-moment.locale("mn");
+import PostHeader from "../components/post-header";
+
 const serializers = {
   types: {
     code: (props) => (
@@ -18,7 +18,7 @@ const serializers = {
     image: (props) => (
       <div className={`blog-image blog-image-${props.node.position}`}>
         {console.log(props)}
-        <img src={urlFor(props.node.asset.url).height(500).width(600).url()} />
+        <img src={urlFor(props.node.asset.url).height(500).width(800).url()} />
         <div className="code-filename" style={{ textAlign: "center" }}>
           {props.node.alt}
         </div>
@@ -35,36 +35,7 @@ export default ({ post }) => {
         <Col md="12">
           {/* <pre>{JSON.stringify(post, null, 3)}</pre> */}
           <pre>{/*JSON.stringify(post, null, 2)*/}</pre>
-          <div className="blog-detail-header">
-            <p className="lead mb-0">
-              <img
-                className="rounded-circle mr-3"
-                height="50px"
-                width="50px"
-                src={post.publisher.picture}
-              />
-              {post.publisher.publisher_name},{" "}
-              {moment(post.date).format("MMM Do YY")}{" "}
-              <i class="fa fa-search-plus" aria-hidden="true"></i>
-            </p>
-
-            <h1 className="font-weight-bold blog-detail-header-title mb-0">
-              {post.title}
-            </h1>
-
-            <h2 className="blog-detail-header-subtitle mb-3">
-              {post.subtitle}
-            </h2>
-
-            <img
-              className="img-fluid rounded"
-              alt={post.cover_image.alt}
-              src={urlFor(post.cover_image).height(500).width(1100).url()}
-            />
-            <div className="code-filename" style={{ textAlign: "center" }}>
-              {post.cover_image.url}
-            </div>
-          </div>
+          <PostHeader post={post} />
           <br />
           <BlockContent
             imageOptions={{ w: 320, h: 240, fit: "max" }}
