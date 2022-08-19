@@ -21,17 +21,17 @@ function MyApp({ Component, pageProps }) {
   return (
     <SWRConfig
       value={{
-        onError: (error, key) => {
-          if (error.status !== 403 && error.status !== 404) {
-            // Podemos enviar el error a Sentry
-            // o mostrarlo una notificación UI.
-          }
-        },
         refreshInterval: 3000,
         fetcher,
+        onError: (error, key) => {
+          if (error.status !== 403 && error.status !== 404) {
+            // We can send the error to Sentry,
+            // or show a notification UI.
+            // alert("Алдаа");
+          }
+        },
       }}
     >
-      {" "}
       <Component {...pageProps} />
     </SWRConfig>
   );
