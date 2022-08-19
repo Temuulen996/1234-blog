@@ -7,7 +7,7 @@ import Intro from "components/intro";
 import useSWR from "swr";
 import { usePosts } from "hooks/usePosts";
 export default function Home({ posts }) {
-  const { data, isLoading, error } = usePosts();
+  const { data, isLoading, error } = usePosts(posts);
   if (error) return <div>aldaa garlaa!! {JSON.stringify(error, null, 2)}</div>;
   if (isLoading) return <div>achaallaj baina...</div>;
 
@@ -23,7 +23,7 @@ export default function Home({ posts }) {
         <Col md="10">
           <ListItem />
         </Col>
-        {posts.map((post) => (
+        {data.map((post) => (
           <Col md="4">
             <GridItem post={post} />
           </Col>

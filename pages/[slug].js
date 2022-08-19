@@ -7,25 +7,6 @@ import HighlightCode from "components/highlight-code";
 import { urlFor } from "lib/api";
 import PostHeader from "../components/post-header";
 
-const serializers = {
-  types: {
-    code: (props) => (
-      <HighlightCode language={props.node.language}>
-        {props.node.code}
-        <div className="code-filename">{props.node.filename}</div>
-      </HighlightCode>
-    ),
-    image: (props) => (
-      <div className={`blog-image blog-image-${props.node.position}`}>
-        {console.log(props)}
-        <img src={urlFor(props.node.asset.url).height(500).width(800).url()} />
-        <div className="code-filename" style={{ textAlign: "center" }}>
-          {props.node.alt}
-        </div>
-      </div>
-    ),
-  },
-};
 export default ({ post }) => {
   const router = useRouter();
 
@@ -46,6 +27,25 @@ export default ({ post }) => {
       </Row>
     </Layout>
   );
+};
+const serializers = {
+  types: {
+    code: (props) => (
+      <HighlightCode language={props.node.language}>
+        {props.node.code}
+        <div className="code-filename">{props.node.filename}</div>
+      </HighlightCode>
+    ),
+    image: (props) => (
+      <div className={`blog-image blog-image-${props.node.position}`}>
+        {console.log(props)}
+        <img src={urlFor(props.node.asset.url).height(500).width(800).url()} />
+        <div className="code-filename" style={{ textAlign: "center" }}>
+          {props.node.alt}
+        </div>
+      </div>
+    ),
+  },
 };
 export const getStaticProps = async ({ params }) => {
   console.log(params.slug);

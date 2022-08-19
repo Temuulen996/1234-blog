@@ -1,6 +1,6 @@
 import useSWR from "swr";
 
-export const usePosts = (url) => {
+export const usePosts = (posts) => {
   const { data, error } = useSWR("/api/posts", {
     onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
       // Never retry on 404.
@@ -15,7 +15,7 @@ export const usePosts = (url) => {
       // Retry after 5 seconds.
       setTimeout(() => revalidate({ retryCount }), 5000);
     },
-    initialData: { name: "saraa" },
+    initialData: posts,
   });
 
   return {
