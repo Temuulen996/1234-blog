@@ -1,4 +1,4 @@
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { getAllPosts, getPaginatedPosts } from "lib/api";
 import ListItem from "components/list-item";
 import GridItem from "components/grid-item";
@@ -6,7 +6,7 @@ import Layout from "../components/layout";
 import Intro from "components/intro";
 import { Suspense } from "react";
 import useSWR from "swr";
-import { usePosts } from "hooks/usePosts";
+import { usePosts } from "hooks/use-posts";
 import useSWRInfinite from "swr/infinite";
 const PAGE_LIMIT = 3;
 export default function Home({ posts }) {
@@ -44,7 +44,7 @@ export default function Home({ posts }) {
       {data ? (
         <div style={{ textAlign: "center" }}>
           {data[data.length - 1].length !== 0 ? (
-            <button onClick={() => setSize(size + 1)}>tsaash ni</button>
+            <Button onClick={() => setSize(size + 1)}>цааш нь</Button>
           ) : null}
         </div>
       ) : (

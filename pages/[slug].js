@@ -42,7 +42,6 @@ const serializers = {
     ),
     image: (props) => (
       <div className={`blog-image blog-image-${props.node.position}`}>
-        {console.log(props)}
         <img src={urlFor(props.node.asset.url).height(500).width(800).url()} />
         <div className="code-filename" style={{ textAlign: "center" }}>
           {props.node.alt}
@@ -52,7 +51,7 @@ const serializers = {
   },
 };
 export const getStaticProps = async ({ params }) => {
-  console.log(params.slug);
+  
   const post = await getPostBySlug(params.slug);
   return {
     props: {
