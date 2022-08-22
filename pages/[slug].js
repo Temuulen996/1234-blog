@@ -1,15 +1,19 @@
-import { useRouter } from "next/router";
 import Layout from "../components/layout";
 import { Row, Col } from "react-bootstrap";
-import { getAllPosts, getPostBySlug } from "lib/api";
+import { getAllPosts, getPaginatedPosts, getPostBySlug } from "lib/api";
 import BlockContent from "@sanity/block-content-to-react";
 import HighlightCode from "components/highlight-code";
 import { urlFor } from "lib/api";
 import PostHeader from "../components/post-header";
-
+import { useRouter } from "next/router";
 export default ({ post }) => {
   const router = useRouter();
-
+  if (router.isFallback)
+    return (
+      <Layout>
+        <div>please wait...</div>
+      </Layout>
+    );
   return (
     <Layout>
       <Row>
@@ -57,7 +61,7 @@ export const getStaticProps = async ({ params }) => {
   };
 };
 export const getStaticPaths = async () => {
-  const posts = await getAllPosts();
+  const posts = await getPaginatedPosts(0, 4);
 
   return {
     paths: posts.map((post) => ({
@@ -65,6 +69,6 @@ export const getStaticPaths = async () => {
         slug: post.slug,
       },
     })),
-    fallback: false,
+    fallback: true,
   };
 };

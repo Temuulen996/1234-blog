@@ -1,5 +1,5 @@
 import { Row, Col } from "react-bootstrap";
-import { getAllPosts } from "lib/api";
+import { getAllPosts, getPaginatedPosts } from "lib/api";
 import ListItem from "components/list-item";
 import GridItem from "components/grid-item";
 import Layout from "../components/layout";
@@ -16,7 +16,7 @@ export default function Home({ posts }) {
   );
   // if (error) return <div>aldaa garlaa!! {JSON.stringify(error, null, 2)}</div>;
   // if (isLoading) return <div>achaallaj baina...</div>;
-  console.log(data);
+
   return (
     <Layout>
       <Row>
@@ -54,7 +54,7 @@ export default function Home({ posts }) {
   );
 }
 export const getStaticProps = async () => {
-  const posts = await getAllPosts(1, PAGE_LIMIT);
+  const posts = await getPaginatedPosts(1, PAGE_LIMIT);
   return {
     props: {
       posts,
