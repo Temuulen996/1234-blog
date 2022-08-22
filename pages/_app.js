@@ -2,6 +2,7 @@ import "styles/index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "highlight.js/styles/a11y-dark.css";
 import { ThemeProvider } from "context/theme-context";
+import "react-toggle/style.css";
 import { SWRConfig } from "swr";
 const fetcher = async (url) => {
   const res = await fetch(url);
