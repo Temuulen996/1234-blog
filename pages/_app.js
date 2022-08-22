@@ -1,6 +1,7 @@
 import "styles/index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "highlight.js/styles/a11y-dark.css";
+import { ThemeProvider } from "context/theme-context";
 import { SWRConfig } from "swr";
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -32,7 +33,9 @@ function MyApp({ Component, pageProps }) {
         },
       }}
     >
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </SWRConfig>
   );
 }
